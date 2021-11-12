@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: buildah-assignment-
+spec:
+  serviceAccountName: build-bot
+  params:
+    - name: source-repo
+      value: https://github.com/cloud-native-garage-method-cohort/emea8-buildah-assignment-janik-buecher
+    - name: image-repo
+      value: quay.io/janikbuecher/buildah-assignment
+  pipelineRef:
+    name: nodejs
+  workspaces:
+    - name: pipeline-shared-data
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 1Gi
+          accessModes:
+            - ReadWriteOnce
