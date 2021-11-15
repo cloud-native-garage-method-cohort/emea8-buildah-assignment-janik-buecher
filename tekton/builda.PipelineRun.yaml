@@ -5,10 +5,12 @@ metadata:
 spec:
   serviceAccountName: build-bot
   params:
+    - name: app-name
+      value: janik-express-app
     - name: source-repo
       value: https://github.com/cloud-native-garage-method-cohort/emea8-buildah-assignment-janik-buecher
     - name: image-repo
-      value: quay.io/janikbuecher/buildah-assignment
+      value: quay.io/janikbuecher/buildah-assignment   
   pipelineRef:
     name: nodejs
   workspaces:
