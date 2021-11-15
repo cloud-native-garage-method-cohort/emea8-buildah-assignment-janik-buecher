@@ -16,30 +16,36 @@ kind: TriggerBinding
 metadata:
   name: webhook-receiver
 ---
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
 metadata:
-  generateName: buildah-assignment-
+  name: webhook-receiver
 spec:
-  serviceAccountName: build-bot
-  params:
-    - name: app-name
-      value: janik-express-app
-    - name: source-repo
-      value: https://github.com/cloud-native-garage-method-cohort/emea8-buildah-assignment-janik-buecher
-    - name: image-repo
-      value: quay.io/janikbuecher/buildah-assignment   
-  pipelineRef:
-    name: nodejs
-  workspaces:
-    - name: pipeline-shared-data
-      volumeClaimTemplate:
-        spec:
-          resources:
-            requests:
-              storage: 1Gi
-          accessModes:
-            - ReadWriteOnce
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: buildah-assignment-
+      spec:
+        serviceAccountName: build-bot
+        params:
+          - name: app-name
+            value: janik-express-app
+          - name: source-repo
+            value: https://github.com/cloud-native-garage-method-cohort/emea8-buildah-assignment-janik-buecher
+          - name: image-repo
+            value: quay.io/janikbuecher/buildah-assignment   
+        pipelineRef:
+          name: nodejs
+        workspaces:
+          - name: pipeline-shared-data
+            volumeClaimTemplate:
+              spec:
+                resources:
+                  requests:
+                    storage: 1Gi
+                accessModes:
+                  - ReadWriteOnce
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
