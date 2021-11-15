@@ -10,6 +10,9 @@ spec:
     - name: image-repo
       type: string
       description: Docker image repository
+    - name: app-name
+      type: string
+      description: app name
   tasks:
     - name: clone-repository
       params:

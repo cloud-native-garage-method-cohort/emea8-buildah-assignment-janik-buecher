@@ -1,13 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 metadata:
-  name: janik-kustomize-app
-
+  name: janik-express-app
 resources:
 - deployment.yaml
 - service.yaml
 - route.yaml
-images:
-- name: '*'
-  newName: quay.io/janikbuecher/buildah-assignment
-  newTag: 48fcf634fd5c86d094ae039736c24f03f2f04d89
+

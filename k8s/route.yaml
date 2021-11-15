@@ -1,12 +1,12 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: janik-kustomize-app
+  name: janik-express-app
 spec:
   tls:
     termination: edge
   to:
-    name: janik-kustomize-app
+    name: janik-express-app
     kind: Service
     weight: 100
   wildcardPolicy: None

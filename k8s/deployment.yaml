@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-sample-app
+  name: janik-express-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: janik-instance
-    app.kubernetes.io/name: janik-app
+      app.kubernetes.io/instance: app-instance
+      app.kubernetes.io/name: app
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: janik-instance
-        app.kubernetes.io/name: janik-app
+        app.kubernetes.io/instance: app-instance
+        app.kubernetes.io/name: app
     spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
       schedulerName: default-scheduler
       containers:
-      - name: janik-kustomize-app
+      - name: janik-express-app
         image: https://github.com/cloud-native-garage-method-cohort/emea8-buildah-assignment-janik-buecher:48fcf634fd5c86d094ae039736c24f03f2f04d89
         ports:
         - name: http
