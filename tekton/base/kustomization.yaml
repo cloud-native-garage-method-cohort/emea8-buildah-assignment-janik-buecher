@@ -8,3 +8,6 @@ resources:
   - deploy.Task.yaml
   - quay-io-credentials.Secret.yaml
   - webhook-receiver.EventListener.yaml
+  - create-configuration.Task.yaml
+  - git-credentials.Secret.yaml
+  - production-repository.ConfigMap.yaml
